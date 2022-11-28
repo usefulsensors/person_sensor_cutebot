@@ -45,11 +45,15 @@ RB = RINGBIT(pin1, pin2)
 while True:
     read_data = i2c.read(PERSON_SENSOR_I2C_ADDRESS,
                          PERSON_SENSOR_RESULT_BYTE_COUNT)
-
     offset = 0
     (pad1, pad2, payload_bytes) = struct.unpack_from(
         PERSON_SENSOR_I2C_HEADER_FORMAT, read_data, offset)
     offset = offset + PERSON_SENSOR_I2C_HEADER_BYTE_COUNT
+
+    # If the I2C read failed with bad values, pause and then retry.
+    if payload_bytes != (PERSON_SENSOR_RESULT_BYTE_COUNT - 7):
+        time.sleep(PERSON_SENSOR_DELAY)
+        continue
 
     (num_faces) = struct.unpack_from("B", read_data, offset)
     num_faces = int(num_faces[0])
