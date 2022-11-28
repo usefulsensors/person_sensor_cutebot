@@ -5,24 +5,25 @@ The [Person Sensor](https://usfl.ink/ps) from [Useful Sensors](https://usefulsen
 is a small, low-cost hardware module that detects nearby peoples’ faces, and
 returns information about how many there are, where they are relative to the
 device, and performs facial recognition. It is designed to be used as an input
-to a larger system, and this example shows how to read it from a [BBC micro:bit board](https://microbit.org/)
-using MicroPython. It can also be used as the starting point for other
-MicroPython-based boards, but since the exact syntax used to access the I2C bus
-varies across platforms, you'll probably need to modify the lines that mention
-`i2c` in the main Python script. For a full developer's guide, see [usfl.ink/ps_dev](https://usfl.ink/ps_dev).
+to a larger system, and this example shows how to program a [ring:bit robot car](https://www.elecfreaks.com/ring-bit-car-v2-for-micro-bit.html)
+to follow you using a [BBC micro:bit board](https://microbit.org/) with
+MicroPython. For a full developer's guide, see [usfl.ink/ps_dev](https://usfl.ink/ps_dev).
 
 ## BoM
 
 To build this project you'll need:
 
  - [Micro:bit board](https://microbit.org/buy/).
+ - [Ring:bit robot car](https://www.adafruit.com/product/4442)
  - [Person Sensor from Useful Sensors](https://usfl.ink/ps).
  - [Qwiic connector cable](https://www.sparkfun.com/products/14427).
  - [SparkFun Qwiic micro:bit breakout](https://www.sparkfun.com/products/16445).
 
- I suggest the SparkFun breakout because it converts the micro:bit's small I2C
- pins into a standard Qwiic socket, but if you're skilled at soldering you could
- attach the wires directly to the edge pins on the board instead.
+I suggest the SparkFun breakout because it converts the micro:bit's small I2C
+pins into a standard Qwiic socket, but if you're skilled at soldering you could
+attach the wires directly to the edge pins on the board instead.
+
+
 
 ## Assembling
 
