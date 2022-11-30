@@ -5,7 +5,7 @@
 
 from microbit import *
 
-from Ringbit import *
+from Cutebot import *
 
 import struct
 import time
@@ -33,13 +33,13 @@ PERSON_SENSOR_DELAY = 0.2
 
 # Constants to control the movement behavior.
 TURN_THRESHOLD = 10
-TURN_SPEED = 20
+TURN_SPEED = 40
 MIN_FACE_WIDTH = 30
 MAX_FACE_WIDTH = 35
-MOVE_SPEED = 40
+MOVE_SPEED = 100
 
 # Set up the ring:bit controller.
-RB = RINGBIT(pin1, pin2)
+CB = CUTEBOT()
 
 # Keep looping and reading the person sensor results.
 while True:
@@ -88,24 +88,24 @@ while True:
         # Decide if we need to turn based on the position of the face.
         turn_direction = (face_center_x - 128)
         if turn_direction < -TURN_THRESHOLD:
-            turn_speed = -TURN_SPEED
+            left_speed = -TURN_SPEED
+            right_speed = TURN_SPEED
         elif turn_direction > TURN_THRESHOLD:
-            turn_speed = TURN_SPEED
-        else:
-            turn_speed = 0
-        left_speed = turn_speed
-        right_speed = -turn_speed
+            left_speed = TURN_SPEED
+            right_speed = -TURN_SPEED
         # If the face is too big, move away, or too small, move forward.
-        if face_width < MIN_FACE_WIDTH:
-            left_speed += MOVE_SPEED
-            right_speed += MOVE_SPEED
+        elif face_width < MIN_FACE_WIDTH:
+            left_speed = MOVE_SPEED
+            right_speed = MOVE_SPEED
         elif face_width > MAX_FACE_WIDTH:
-            left_speed -= MOVE_SPEED
-            right_speed -= MOVE_SPEED
-    if left_speed != 0 and right_speed != 0:
-        left_speed = min(100, max(-100, left_speed))
-        right_speed = min(100, max(-100, right_speed))
-        RB.set_motors_speed(left_speed, right_speed)
-        time.sleep(0.2)
-        RB.set_motors_speed(0, 0)
+            left_speed = -MOVE_SPEED
+            right_speed = -MOVE_SPEED
+        else:
+            left_speed = 0
+            right_speed = 0
+    print(left_speed, right_speed)
+    if left_speed != 0 or right_speed != 0:
+        CB.set_motors_speed(left_speed, right_speed)
+        time.sleep(0.02)
+    CB.set_motors_speed(0, 0)
     time.sleep(PERSON_SENSOR_DELAY)
