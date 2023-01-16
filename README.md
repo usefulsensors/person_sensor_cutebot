@@ -18,12 +18,7 @@ To build this project you'll need:
  - [Micro:bit board](https://microbit.org/buy/).
  - [CuteBot robot car](https://www.elecfreaks.com/micro-bit-smart-cutebot.html)
  - [Person Sensor from Useful Sensors](https://usfl.ink/ps).
- - [Qwiic connector cable](https://www.sparkfun.com/products/14427).
- - [SparkFun Qwiic micro:bit breakout](https://www.sparkfun.com/products/16445).
-
-I suggest the SparkFun breakout because it converts the micro:bit's small I2C
-pins into a standard Qwiic socket, but if you're skilled at soldering you could
-attach the wires directly to the edge pins on the board instead.
+ - [Qwiic connector cable with male pins](https://www.sparkfun.com/products/17912).
 
 ## Assembling
 
@@ -31,19 +26,26 @@ The CuteBot should come almost fully assembled. Test to make sure that you're
 able to run simple sample programs like forward/reverse according to the
 [manufacturers instructions](https://www.elecfreaks.com/learn-en/microbitKit/smart_cutebot/index.html).
 
-Now remove the micro:bit from the car and slot it into the breakout slot, with the two I2C sockets on the breakout facing in the same direction as the front of the board (the side with the buttons and LED display on it). Plug one end of the Qwiic cable into either
-of the breakout's I2C sockets, and the other into the socket at the top of the
-person sensor. If you power the micro:bit board, you should see the green LED
-on the person sensor light up when you point it at yourself.
+Now remove the micro:bit from the car and slot it into the breakout slot on the
+CuteBot. Plug one end of the Qwiic cable into the socket at the top of the
+person sensor and then the male connectors into the I2C connector on the robot,
+marked IIC, which is the row of female connectors behind the sonar interface.
 
-You will now need to remount the micro:bit back into the CuteBot backing board.
-It's no longer as snug a fit, so I use Blu Tack to hold it securely.
+The order, from left to right with the LEDs of the Micro:bit facing
+you, should be GND (black), VCC (red), CLK (yellow), and DAT (blue). Confusingly
+this is *almost* the same as the Qwiic connector order, but with CLK and DAT
+flipped.
 
-Once that is in place, fix the person sensor to the top of the backing board, so
-that it's facing horizontally forward. I've used Blu Tack to fix it in place in
-this example:
 
-![Car mounting](car_mounting.jpg)
+![Wiring](microbit_person_sensor_cutebot_bb.png)
+
+
+Now if you power the micro:bit board, you should see the green LED
+on the person sensor light up when you point it at yourself. Fix the person
+sensor to the top of the Micro:bit, so that it's facing horizontally forward.
+I've used Blu Tack to fix it in place in this example:
+
+![CuteBot mounting](cutebot_mounting.jpg)
 
 ## Running
 
