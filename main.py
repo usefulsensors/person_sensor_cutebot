@@ -103,7 +103,6 @@ while True:
         else:
             left_speed = 0
             right_speed = 0
-    print(left_speed, right_speed)
     if left_speed != 0 or right_speed != 0:
         CB.set_motors_speed(left_speed, right_speed)
         time.sleep(0.02)
